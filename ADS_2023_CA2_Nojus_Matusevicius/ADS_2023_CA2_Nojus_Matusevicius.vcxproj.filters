@@ -29,5 +29,14 @@
     <ClInclude Include="XMLParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DListNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DListIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
