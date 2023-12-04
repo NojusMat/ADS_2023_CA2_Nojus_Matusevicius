@@ -20,5 +20,13 @@ namespace ADSCA2TEST
 			Assert::AreEqual(parser.getFilename().c_str(), filename.c_str());
 
 		}
-	};
+		TEST_METHOD(TestLoadFunction)
+		{
+			string filename = "myfile.xml";
+			XMLParser<string> parser(filename);
+			parser.load();
+			Assert::AreEqual(parser.getFilename().c_str(), filename.c_str());
+		}
+	}
+	;
 }
