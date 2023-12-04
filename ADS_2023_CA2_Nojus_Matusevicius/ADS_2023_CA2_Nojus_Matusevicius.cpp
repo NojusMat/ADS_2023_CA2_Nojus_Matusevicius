@@ -10,6 +10,17 @@ using namespace std;
 
 int main()
 {
+	XMLParser<string> parser("myfile.xml");
+	bool result = parser.load();
+if (result)
+	{
+		cout << "File loaded successfully" << endl;
+	}
+	else
+	{
+		cout << "File not loaded" << endl;
+	}
+
 	return 0;
 }
 
