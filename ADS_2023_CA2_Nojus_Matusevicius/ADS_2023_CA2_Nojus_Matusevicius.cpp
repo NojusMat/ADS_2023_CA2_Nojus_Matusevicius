@@ -8,15 +8,8 @@
 
 using namespace std;
 
-class XMLParser
-{
-public:
-
-};
-
 int main()
 {
-    XMLParser parser;
-    std::cout << "Hello World!\n";
+	return 0;
 }
 
