@@ -34,6 +34,13 @@ namespace ADSCA2TEST
 			bool result = parser.load();
 			Assert::IsFalse(result);
 		}
+		TEST_METHOD(TestValidFile)
+		{
+			string filename = "myfile.xml";
+			XMLParser<string> parser(filename);
+			bool result = parser.load();
+			Assert::IsTrue(result);
+		}
 	}
 	;
 }
