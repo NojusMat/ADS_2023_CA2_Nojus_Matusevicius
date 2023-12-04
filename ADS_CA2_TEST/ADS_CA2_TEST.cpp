@@ -27,6 +27,13 @@ namespace ADSCA2TEST
 			parser.load();
 			Assert::AreEqual(parser.getFilename().c_str(), filename.c_str());
 		}
+		TEST_METHOD(TestInvalidFile)
+		{
+			string filename = "asdfghj.xml";
+			XMLParser<string> parser(filename);
+			bool result = parser.load();
+			Assert::IsFalse(result);
+		}
 	}
 	;
 }
