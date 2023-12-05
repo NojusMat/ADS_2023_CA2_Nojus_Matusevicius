@@ -38,13 +38,18 @@ template <class T>
 bool XMLParser<T>::load()
 {
 	ifstream fileStream(filename);
+
 if (!fileStream.is_open())
 	{
+		cout << "Error opening file:" << filename << endl;
 		return false;
 	}
-	string xmlContent((istreambuf_iterator<char>(fileStream)), istreambuf_iterator<char>());
 
+	string xmlContent((istreambuf_iterator<char>(fileStream)), istreambuf_iterator<char>());
 	fileStream.close();
+
+	
+
     cout << xmlContent << endl;
 	return true;
 }

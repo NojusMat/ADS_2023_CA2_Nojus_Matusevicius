@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+
 	XMLParser<string> parser("myfile.xml");
 	bool result = parser.load();
 if (result)
@@ -20,7 +21,6 @@ if (result)
 	{
 		cout << "File not loaded" << endl;
 	}
-
-	return 0;
+return 0;
 }
 
