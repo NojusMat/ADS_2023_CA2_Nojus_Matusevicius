@@ -12,11 +12,13 @@ class XMLParser
 {
 private:
 	T filename;
+	string xmlContent;
 
 public:
 	XMLParser(const T& filename);
 	T getFilename() const;
 	bool load();
+	bool hasRoot()const;
 
 };
 
@@ -52,4 +54,10 @@ if (!fileStream.is_open())
 
     cout << xmlContent << endl;
 	return true;
+}
+
+template<class T>
+inline bool XMLParser<T>::hasRoot() const
+{
+	return false;
 }
