@@ -11,14 +11,14 @@ template <class T>
 class XMLParser
 {
 private:
-	T filename;
-	string xmlContent;
+	T filename;  // filename
+	string XMLContent; // string to hold the content of the file
 
 public:
-	XMLParser(const T& filename);
-	T getFilename() const;
-	bool load();
-	bool hasRoot()const;
+	XMLParser(const T& filename); 
+	T getFilename() const; // returns the filename
+	bool load();          // loads the file into a string
+	bool hasRoot()const;  // checks if the file has a root tag
 
 };
 
@@ -26,13 +26,13 @@ template <class T>
 XMLParser<T>::XMLParser(const T& filename)
 {
 	//set the filename
-	this->filename = filename;
+	this->filename = filename;  // set the filename
 }
 
 template<class T>
 T XMLParser<T>::getFilename() const
 {
-	return this->filename;
+	return this->filename; // return the filename
 }
 
 
@@ -43,21 +43,34 @@ bool XMLParser<T>::load()
 
 if (!fileStream.is_open())
 	{
-		cout << "Error opening file:" << filename << endl;
+		cout << "Error opening file:" << filename << endl; // if the file is not open output error message
 		return false;
 	}
 
-	string xmlContent((istreambuf_iterator<char>(fileStream)), istreambuf_iterator<char>());
-	fileStream.close();
+	XMLContent.assign((istreambuf_iterator<char>(fileStream)), istreambuf_iterator<char>());  // reading the file into a string
+	fileStream.close();  // closing the file
 
 	
 
-    cout << xmlContent << endl;
-	return true;
+    cout << XMLContent << endl;// print content of file
+	return true; 
 }
 
-template<class T>
-inline bool XMLParser<T>::hasRoot() const
-{
-	return false;
+
+template <class T>
+bool XMLParser<T>::hasRoot() const {
+	size_t openingRootTag = XMLContent.find("<dir>"); 
+	size_t closingRootTag = XMLContent.find("</dir>"); // finding the opening and closing root tags
+
+	if (openingRootTag != string::npos && closingRootTag != string::npos && openingRootTag < closingRootTag)  // finding that there are a opening and closing dir tag and opening is before the clsoing
+	{
+		string rootContent = XMLContent.substr(openingRootTag + 5, closingRootTag - openingRootTag - 5); // get the content between the dir tags and ignoring the tags themselves
+		size_t nestedDirTag = rootContent.find("<dir>");  // seeing if there is another dir tag between the other dir tags
+		return (nestedDirTag != string::npos); // if nestedDirTag is not not present, then there is a dir tags within the root tags
+	}
+	else
+	{
+		return false;
+	}
 }
+

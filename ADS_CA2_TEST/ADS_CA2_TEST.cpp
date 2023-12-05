@@ -37,10 +37,10 @@ namespace ADSCA2TEST
 		TEST_METHOD(TestRoot) {
 			string filename = "myfile.xml";
 			ofstream file(filename);
-			file << "Invalid root";
+			file << "<dir><dir></dir></dir>";
 			file.close();
 
-			XMLParser<string> parser(filename);
+			XMLParser<string> parser(filename); 
 			parser.load();
 			Assert::IsTrue(parser.hasRoot(),L"Root not found");
 
