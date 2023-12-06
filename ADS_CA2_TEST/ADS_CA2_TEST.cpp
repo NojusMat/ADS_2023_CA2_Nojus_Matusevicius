@@ -17,7 +17,7 @@ namespace ADSCA2TEST
 		{
 			string filename = "myfile.xml";
 			XMLParser<string> parser(filename);
-			Assert::AreEqual(parser.getFilename().c_str(), filename.c_str());
+			Assert::AreEqual(parser.getFilename().c_str(), filename.c_str(),L"Constructor not working");
 
 		}
 		TEST_METHOD(TestLoadFunction)
@@ -25,7 +25,7 @@ namespace ADSCA2TEST
 			string filename = "myfile.xml";
 			XMLParser<string> parser(filename);
 			parser.load();
-			Assert::AreEqual(parser.getFilename().c_str(), filename.c_str());
+			Assert::AreEqual(parser.getFilename().c_str(), filename.c_str(),L" File does not load");
 		}
 		TEST_METHOD(TestInvalidFile)
 		{
@@ -55,6 +55,16 @@ namespace ADSCA2TEST
 			parser.load();
 			Assert::IsTrue(parser.hasClosingTags(), L"Closing tags not found");
 
+		}
+		TEST_METHOD(TestNestingIsValid) {
+			string filename = "myfile.xml";
+			ofstream file(filename);
+			file << "<dir><dir></dir></dir>";
+			file.close();
+
+			XMLParser<string> parser(filename);
+			parser.load();
+			Assert::IsTrue(parser.nestingIsValid(), L"Nesting is not valid");
 		}
 	}
 	;

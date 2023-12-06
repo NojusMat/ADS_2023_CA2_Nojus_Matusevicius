@@ -20,6 +20,7 @@ public:
 	bool load();          // loads the file into a string
 	bool hasRoot()const;  // checks if the file has a root tag
 	bool hasClosingTags()const; // checks if the file has closing tags
+	bool nestingIsValid()const; // checks if the file has valid nesting
 
 };
 
@@ -85,4 +86,11 @@ bool XMLParser<T>::hasRoot() const {
 
 		return(openingTagCount == closingTagCount && closingDashTagCount * 2 == closingTagCount); // if the number of opening tags is equal to the number of closing tags and the number of closing tags with a slash is half the number of closing tags, then there are closing tags
 	}
+
+	template <class T>
+	bool XMLParser<T>::nestingIsValid() const {
+
+		return false;
+	}
+	
 
