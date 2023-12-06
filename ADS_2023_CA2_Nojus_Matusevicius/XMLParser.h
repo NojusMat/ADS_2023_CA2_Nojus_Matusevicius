@@ -78,6 +78,11 @@ bool XMLParser<T>::hasRoot() const {
 	template <class T>
 	bool XMLParser<T>::hasClosingTags() const {
 
-		return false;
+		size_t openingTagCount = count(XMLContent.begin(),XMLContent.end(),'<'); // count the number of opening tags
+		size_t closingTagCount = count(XMLContent.begin(), XMLContent.end(), '>'); // count the number of closing tags
+		size_t closingDashTagCount = count(XMLContent.begin(), XMLContent.end(), '/'); // count the number of closing tags with a slash
+
+
+		return(openingTagCount == closingTagCount && closingDashTagCount * 2 == closingTagCount); // if the number of opening tags is equal to the number of closing tags and the number of closing tags with a slash is half the number of closing tags, then there are closing tags
 	}
 
