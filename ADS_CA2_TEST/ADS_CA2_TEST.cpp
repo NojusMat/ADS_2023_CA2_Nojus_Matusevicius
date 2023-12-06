@@ -45,6 +45,17 @@ namespace ADSCA2TEST
 			Assert::IsTrue(parser.hasRoot(),L"Root not found");
 
 		}
+		TEST_METHOD(TestClosingTags) {
+			string filename = "myfile.xml";
+			ofstream file(filename);
+			file << "<dir><dir></dir></dir>";
+			file.close();
+
+			XMLParser<string> parser(filename);
+			parser.load();
+			Assert::IsTrue(parser.hasClosingTags(), L"Closing tags not found");
+
+		}
 	}
 	;
 }

@@ -19,6 +19,7 @@ public:
 	T getFilename() const; // returns the filename
 	bool load();          // loads the file into a string
 	bool hasRoot()const;  // checks if the file has a root tag
+	bool hasClosingTags()const; // checks if the file has closing tags
 
 };
 
@@ -59,7 +60,7 @@ if (!fileStream.is_open())
 
 template <class T>
 bool XMLParser<T>::hasRoot() const {
-	size_t openingRootTag = XMLContent.find("<dir>"); 
+	size_t openingRootTag = XMLContent.find("<dir>");
 	size_t closingRootTag = XMLContent.find("</dir>"); // finding the opening and closing root tags
 
 	if (openingRootTag != string::npos && closingRootTag != string::npos && openingRootTag < closingRootTag)  // finding that there are a opening and closing dir tag and opening is before the clsoing
@@ -73,4 +74,10 @@ bool XMLParser<T>::hasRoot() const {
 		return false;
 	}
 }
+
+	template <class T>
+	bool XMLParser<T>::hasClosingTags() const {
+
+		return false;
+	}
 
