@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <stack>
 
 using namespace std;
 
@@ -79,18 +80,60 @@ bool XMLParser<T>::hasRoot() const {
 	template <class T>
 	bool XMLParser<T>::hasClosingTags() const {
 
-		size_t openingTagCount = count(XMLContent.begin(),XMLContent.end(),'<'); // count the number of opening tags
-		size_t closingTagCount = count(XMLContent.begin(), XMLContent.end(), '>'); // count the number of closing tags
-		size_t closingDashTagCount = count(XMLContent.begin(), XMLContent.end(), '/'); // count the number of closing tags with a slash
-
-
-		return(openingTagCount == closingTagCount && closingDashTagCount * 2 == closingTagCount); // if the number of opening tags is equal to the number of closing tags and the number of closing tags with a slash is half the number of closing tags, then there are closing tags
+		stack <char> tagStack; // stack to hold the tags
+		for (char c : XMLContent)
+		{
+			if (c == '<')
+			{
+				tagStack.push(c); // if the character is a opening tag, push it onto the stack
+			}
+			else if (c == '>')
+			{
+				if (!tagStack.empty() && tagStack.top() == '<') // if the character is a closing tag, pop the opening tag off the stack
+				{
+					tagStack.pop();
+				}
+				else
+				{
+					return false; // if the stack is empty or the top of the stack is not a opening tag, return false
+				}
+			}
+		}
+			return tagStack.empty(); // if the stack is empty, return true
 	}
 
 	template <class T>
 	bool XMLParser<T>::nestingIsValid() const {
-
-		return false;
+		{
+			stack<char> tagStack; // stack to hold the tags
+			int depth = 0; // depth of the tags
+			for (char c : XMLContent)
+			{
+				if (c == '<')
+				{
+					tagStack.push(c); // if the character is a opening tag, push it onto the stack
+					depth++;
+				}
+				else if (c == '>')
+				{
+					if (!tagStack.empty() && tagStack.top() == '<') // if the character is a closing tag, pop the opening tag off the stack
+					{
+						tagStack.pop();
+						depth--;
+					}
+					else
+					{
+						return false; // if the stack is empty or the top of the stack is not a opening tag, return false
+					}
+					if (depth < 0)
+					{
+						return false;
+					}
+				}
+			}
+			return tagStack.empty() && depth == 0; // if the stack is empty, return true
+		}
 	}
+	
 	
 
