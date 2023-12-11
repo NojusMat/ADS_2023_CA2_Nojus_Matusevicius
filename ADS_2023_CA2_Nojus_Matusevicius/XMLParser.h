@@ -137,8 +137,6 @@ bool XMLParser<T>::hasRoot() const {
 			return tagStack.empty() && depth == 0; // if the stack is empty, return true
 		}
 	}
-
-}
 	
 
 

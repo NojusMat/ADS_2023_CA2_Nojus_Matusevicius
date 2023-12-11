@@ -69,7 +69,7 @@ namespace ADSCA2TEST
 			Assert::IsTrue(parser.nestingIsValid(), L"Nesting is not valid");
 		}
 	
-		TEST_METHOD(TestTree){
+		TEST_METHOD(TestTreeCreation){
 			string filename = "myfile.xml";
 			ofstream file(filename);
 			file << "<dir><dir></dir></dir>";
