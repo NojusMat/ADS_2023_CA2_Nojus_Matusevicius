@@ -4,6 +4,10 @@
 
 #include <iostream>
 #include "XMLParser.h"
+#include "TreeIterator.h"
+#include "Tree.h"
+#include "DListNode.h"
+#include "DListIterator.h"
 #include <string>
 #include <iostream>
 #include <queue>
@@ -22,6 +26,8 @@ if (result)
 		if(parser.hasRoot())
 		{
 			cout << "File has root" << endl;
+			Tree<string>root("Root");
+			TreeIterator<string>iterator(&root);
 		}
 		else
 		{

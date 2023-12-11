@@ -11,6 +11,8 @@ public:
 	Tree(T item);
 	int count();
 	T getData();
+	Tree<T>* getRoot();
+	
 };
 template <class T>
 T Tree<T>::getData()
@@ -37,3 +39,16 @@ int Tree<T>::count()
 	}
 	return c;
 }
+
+template <class T>
+Tree<T>* Tree<T>::getRoot()
+{
+	Tree<T>* root = this;
+	while (root->parent != nullptr)
+	{
+		root = root->parent;
+	}
+	return root;
+}
+
+

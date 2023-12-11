@@ -1,5 +1,7 @@
 #pragma once
 #include "DList.h"
+#include "Tree.h"
+#include "TreeIterator.h"
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -22,6 +24,7 @@ public:
 	bool hasRoot()const;  // checks if the file has a root tag
 	bool hasClosingTags()const; // checks if the file has closing tags
 	bool nestingIsValid()const; // checks if the file has valid nesting
+	Tree<T> getTree();
 
 };
 
@@ -134,6 +137,13 @@ bool XMLParser<T>::hasRoot() const {
 			return tagStack.empty() && depth == 0; // if the stack is empty, return true
 		}
 	}
+
+}
+	
+
+
+	
+	
 	
 	
 
