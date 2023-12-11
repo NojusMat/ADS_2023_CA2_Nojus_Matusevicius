@@ -1,19 +1,22 @@
 #pragma once
 #include <iostream>
+#include "XMLParser.h"
 #include <string>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <stack>
+#include <map>
 
 using namespace std;
 
 class Node
 {
-	public :
+public:
 	string name;
 	vector<Node*> children;
 	Node* parent;
-	Node(const string& nodename) :name(nodename) {};
+	map <string, string> attributes;
+	string content;
 
 };

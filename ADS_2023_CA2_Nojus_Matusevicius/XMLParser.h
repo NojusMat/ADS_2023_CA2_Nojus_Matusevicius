@@ -2,6 +2,8 @@
 #include "DList.h"
 #include "Tree.h"
 #include "TreeIterator.h"
+#include "Node.h"
+#include "Stack.h"
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -13,18 +15,17 @@ using namespace std;
 template <class T>
 class XMLParser
 {
-private:
+public:
 	T filename;  // filename
 	string XMLContent; // string to hold the content of the file
-
-public:
 	XMLParser(const T& filename); 
 	T getFilename() const; // returns the filename
 	bool load();          // loads the file into a string
 	bool hasRoot()const;  // checks if the file has a root tag
 	bool hasClosingTags()const; // checks if the file has closing tags
 	bool nestingIsValid()const; // checks if the file has valid nesting
-	Tree<T> getTree();
+	//Node* getRoot(); // returns the root node
+	bool hasOpeningTags()const; // checks if the file has opening tags
 
 };
 
@@ -104,6 +105,15 @@ bool XMLParser<T>::hasRoot() const {
 		}
 			return tagStack.empty(); // if the stack is empty, return true
 	}
+
+	template <class T>
+	bool XMLParser<T>::hasOpeningTags() const{
+
+		return false;
+
+	}
+		
+
 
 	template <class T>
 	bool XMLParser<T>::nestingIsValid() const {

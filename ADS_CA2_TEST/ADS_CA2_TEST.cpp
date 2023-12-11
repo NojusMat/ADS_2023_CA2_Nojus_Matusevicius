@@ -58,6 +58,13 @@ namespace ADSCA2TEST
 			Assert::IsTrue(parser.hasClosingTags(), L"Closing tags not found");
 
 		}
+		TEST_METHOD(TestOpeningTags) {
+			string filename = "myfile.xml";
+			XMLParser<string> parser(filename);
+			parser.load();
+			Assert::IsTrue(parser.hasOpeningTags(), L"Opening tags not found");
+
+		}
 		TEST_METHOD(TestNestingIsValid) {
 			string filename = "myfile.xml";
 			ofstream file(filename);
@@ -68,17 +75,6 @@ namespace ADSCA2TEST
 			parser.load();
 			Assert::IsTrue(parser.nestingIsValid(), L"Nesting is not valid");
 		}
-	
-		TEST_METHOD(TestTreeCreation){
-			string filename = "myfile.xml";
-			ofstream file(filename);
-			file << "<dir><dir></dir></dir>";
-			file.close();
 
-			XMLParser<string> parser(filename);
-			parser.load();
-			Tree<string> tree = parser.getTree();
-			Assert::IsTrue(tree.getRoot()->getData() == "dir");
-		}
 	};
 }
