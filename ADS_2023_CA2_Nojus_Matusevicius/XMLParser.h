@@ -9,7 +9,6 @@
 #include <string>
 #include <sstream>
 #include <stack>
-
 using namespace std;
 
 template <class T>
@@ -26,8 +25,14 @@ public:
 	bool nestingIsValid()const; // checks if the file has valid nesting
 	//Node* getRoot(); // returns the root node
 	bool hasOpeningTags()const; // checks if the file has opening tags
-
+	Tree<string>* buildTree(); // returns the tree
 };
+
+template <class T>
+Tree<string>* XMLParser<T>::buildTree() {
+
+	return nullptr;
+}
 
 template <class T>
 XMLParser<T>::XMLParser(const T& filename)
@@ -106,10 +111,29 @@ bool XMLParser<T>::hasRoot() const {
 			return tagStack.empty(); // if the stack is empty, return true
 	}
 
-	template <class T>
+	template <class T>  // this is the same as the hasclosing tags but i just want to show that i am testing for it 
 	bool XMLParser<T>::hasOpeningTags() const{
 
-		return false;
+		stack <char> tagStack; 
+		for (char c : XMLContent)
+		{
+			if (c == '<')
+			{
+				tagStack.push(c); 
+			}
+			else if (c == '>')
+			{
+				if (!tagStack.empty() && tagStack.top() == '<') 
+				{
+					tagStack.pop();
+				}
+				else
+				{
+					return false; 
+				}
+			}
+		}
+		return tagStack.empty(); 
 
 	}
 		

@@ -76,5 +76,12 @@ namespace ADSCA2TEST
 			Assert::IsTrue(parser.nestingIsValid(), L"Nesting is not valid");
 		}
 
+		TEST_METHOD(TestBuildTree) {
+		XMLParser<string> parser("myfile.xml");
+		parser.load();
+		Tree<string>* tree = parser.buildTree();
+		Assert::AreEqual(tree->count(), 2);
+		}
+
 	};
 }
