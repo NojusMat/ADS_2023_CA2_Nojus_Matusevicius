@@ -31,7 +31,7 @@ public:
 			switch (choice)
 			{
 			case 1:
-				cout << "Number of items in a folder!" << endl;
+				countItems();
 				break;
 			case 2:
 				cout << "Goodbye!" << endl;
@@ -43,11 +43,27 @@ public:
 		} while (choice != 2);
 	}
 	private:
+
 		void displayMenu()
-	{		cout << "__________MENU________" << endl;
-			cout << "1. Part 1" << endl;
+		{	cout << "__________MENU________" << endl;
+			cout << "1. Number of items in the document" << endl;
 			cout << "2. Exit" << endl;
 		}
+
+		void countItems()
+		{
+			int numberOfItemsInDocument = 0;
+			string filename = "myfile.xml";
+			XMLParser<string> parser(filename);
+			parser.load();
+			//TreeIterator<string> iteratowROTEr(parser.hasRoot());
+			//while (iterator.childValid())
+			{
+				numberOfItemsInDocument++;
+				//iterator.childForth();
+			}
+			cout << "Number of items in the document: " << numberOfItemsInDocument << endl;
+			}
 	};
 
 
