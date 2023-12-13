@@ -15,30 +15,96 @@
 
 using namespace std;
 
-int main()
+class App
+{
+public:
+	int choice;
+	App():choice(0) {}
+	void run() {
+		int choice;
+		do {
+			displayMenu();
+			cout << "Enter your choice: ";
+			cin >> choice;
+			cin.ignore();
+
+			switch (choice)
+			{
+			case 1:
+				cout << "Number of items in a folder!" << endl;
+				break;
+			case 2:
+				cout << "Goodbye!" << endl;
+				break;
+			default:
+				cout << "Invalid choice" << endl;
+				break;
+			}
+		} while (choice != 2);
+	}
+	private:
+		void displayMenu()
+	{		cout << "__________MENU________" << endl;
+			cout << "1. Part 1" << endl;
+			cout << "2. Exit" << endl;
+		}
+	};
+
+
+template <class T>
+void displayTree(TreeIterator<T> iter, string indent)
+{
+	cout << indent << iter.node->data;
+	if (iter.childValid())
+	{
+		cout << "(" << endl;
+		while (iter.childValid())
+		{
+			TreeIterator<T> iter2(iter.childIter.item());
+			displayTree(iter2, "\t" + indent);
+			iter.childForth();
+		}
+		cout << indent << ")" << endl;
+	}
+	cout << endl;
+
+}
+
+void part1()
 {
 	XMLParser<string> parser("myfile.xml");
 	bool result = parser.load();
-if (result)
+	if (result)
 	{
 		cout << "File loaded successfully" << endl;
 
-		if(parser.hasRoot())
+		if (parser.hasRoot())
 		{
-			cout << "File has root" << endl;
-			Tree<string>root("Root");
-			TreeIterator<string>iterator(&root);
+
+			parser.buildTree();
+		//	Tree<string>* root = parser.getRoot();
+			//TreeIterator<string> iter(root);
+			//displayTree(iter, "");
+			App myApp;
+			myApp.run();
+			//delete root;
+
 		}
 		else
 		{
 			cout << "File does not have root" << endl;
 		}
-		
+
 	}
 	else
 	{
 		cout << "File not loaded" << endl;
 	}
+}
+
+int main()
+{
+ part1();
 
 return 0;
 }

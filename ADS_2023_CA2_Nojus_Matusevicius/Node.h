@@ -17,6 +17,8 @@ public:
 	vector<Node*> children;
 	Node* parent;
 	map <string, string> attributes;
-	string content;
+	//string content;
+	//Node() : parent(nullptr) {}
+//	Node(string name) : name(name), parent(nullptr) {}
 
 };

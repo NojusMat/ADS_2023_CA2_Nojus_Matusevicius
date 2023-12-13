@@ -128,7 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ADS_2023_CA2_Nojus_Matusevicius.cpp" />
-    <ClCompile Include="XMLParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DList.h" />
