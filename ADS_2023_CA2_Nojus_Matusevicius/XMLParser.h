@@ -32,45 +32,7 @@ public:
 template <class T>
 void XMLParser<T>::buildTree()
 {
-	stack<Node*> nodeStack; // stack to hold the nodes
-	Node* root = new Node(); // creating a new node
-	root->name = "root"; // setting the name of the node to root
-	nodeStack.push(root); // pushing the node onto the stack
 
-	stringstream ss(XMLContent); // creating a string stream to read the content of the file
-	string line; // string to hold the line of the file
-	while (getline(ss, line)) // while there are lines to read
-	{
-		if (line.find("<") != string::npos && line.find(">") != string::npos) // if there are opening and closing tags
-		{
-			string tagName = line.substr(line.find("<") + 1, line.find(">") - line.find("<") - 1); // get the name of the tag
-			if (tagName.find("/") != string::npos) // if the tag is a closing tag
-			{
-				tagName = tagName.substr(tagName.find("/") + 1); // get the name of the tag
-				if (nodeStack.top()->name == tagName) // if the top of the stack is the same as the tag name
-				{
-					nodeStack.pop(); // pop the top of the stack
-				}
-				else
-				{
-					cout << "Error: Invalid nesting" << endl; 
-					return;
-				}
-			}
-			else
-			{
-				//Node* newNode = new Node(); // creating a new node
-				//newNode->name = tagName; // setting the name of the node to the tag name
-				//nodeStack.top()->children.push_back(newNode); // adding the node to the children of the top of the stack
-				//newNode->parent = nodeStack.top(); // setting the parent of the node to the top of the stack
-				//nodeStack.push(newNode); // pushing the node onto the stack
-			}
-		}
-		else
-		{
-			//nodeStack.top()->content = line; // setting the content of the node to the line
-		}
-	}
 }
 
 template <class T>
