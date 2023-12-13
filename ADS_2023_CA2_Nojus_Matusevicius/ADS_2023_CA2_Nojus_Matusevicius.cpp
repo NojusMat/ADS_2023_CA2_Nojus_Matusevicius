@@ -1,4 +1,5 @@
 // ADS_2023_CA2_Nojus_Matusevicius.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Co Pilot was used during the development of this project
 // https://medium.com/lightning-strikes-a-developers-journey/breaking-down-std-string-npos-understanding-the-not-found-constant-a785b58313d7  - reading a line from xml file 
 // https://cplusplus.com/reference/string/string/string/
 
